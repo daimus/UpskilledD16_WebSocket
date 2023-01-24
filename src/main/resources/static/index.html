@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Realtime Voting Application</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+</head>
+<body>
+<main class="container mt-5">
+    <div class="row">
+        <div class="col-md-4 col-sm-12">
+            <div class="card">
+                <img src="images/candidate-1.jpg" class="card-img-top" alt="Mansur Iman">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Mansur Iman</h5>
+                    <button type="button" class="btn btn-success vote-button d-none" onclick="vote(1)">Vote</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-12">
+            <div class="card">
+                <img src="images/candidate-2.jpg" class="card-img-top" alt="Agus Arif">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Agus Arif</h5>
+                    <button type="button" class="btn btn-success vote-button d-none" onclick="vote(2)">Vote</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-12">
+            <div class="card">
+                <img src="images/candidate-3.jpg" class="card-img-top" alt="Buana Melati">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Buana Melati</h5>
+                    <button type="button" class="btn btn-success vote-button d-none" onclick="vote(3)">Vote</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row pt-4 mb-4">
+        <div class="col-12">
+            <div class="text-center border border-2 border-success pt-4 pb-4 d-flex flex-column align-items-center justify-content-center">
+
+                    <div class="alert alert-success d-none" role="alert" id="alert-thank-you">
+                        Thank you for participating!
+                    </div>
+                    <input type="number" name="id-number" id="id-number" class="form-control max" placeholder="Enter identity number" style="max-width: 400px">
+                    <button class="btn btn-primary mt-2" type="button" onclick="handleSignIn()" id="signin-button">Sign In to Vote</button>
+                    <button class="btn btn-danger d-none" type="button" onclick="handleSignOut()" id="signout-button">Sign Out</button>
+
+            </div>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col-md-6 col-sm-12">
+            <canvas id="vote-result-chart"></canvas>
+        </div>
+        <div class="col-md-6 col-sm-12">
+            <table class="table table-bordered">
+                <tbody>
+                    <tr>
+                        <th>Mansur Iman </th>
+                        <td><span id="candidate1-vote-count">0</span></td>
+                    </tr>
+                    <tr>
+                        <th>Agus Arif</th>
+                        <td><span id="candidate2-vote-count">0</span></td>
+                    </tr>
+                    <tr>
+                        <th>Buana Melati</th>
+                        <td><span id="candidate3-vote-count">0</span></td>
+                    </tr>
+                    <tr>
+                        <th>Total Voters</th>
+                        <td><span id="total-vote-count">0</span></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="mt-2">
+                <h3>Vote Update: </h3>
+                <ul id="vote-update-list"></ul>
+            </div>
+        </div>
+    </div>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="js/chart.js"></script>
+<script src="js/sockjs.min.js"></script>
+<script src="js/stomp.min.js"></script>
+<script src="js/app.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        connect();
+    });
+</script>
+</body>
+</html>
